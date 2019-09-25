@@ -30,7 +30,7 @@ public class Basket {
     }
 
     //@EventListener(ApplicationReadyEvent.class)
-    public void showInfo(String mode) {
+    void showInfo(String mode) {
         System.out.println("Witaj w sklepie internetowym w wariancie " + mode);
         System.out.println("*** Lista produktów w koszyku: ***");
         productList.forEach(System.out::println);
@@ -75,23 +75,19 @@ public class Basket {
     }
 
     public double getGrossPrice () {
-        double grossPrice = getNetPrice() + calculateTax();
-        return grossPrice;
+        return getNetPrice() + calculateTax();
     }
 
-    public double calculateTax() {
-        double tax = getNetPrice() * getTax() / 100;
-        return tax;
+    private double calculateTax() {
+        return getNetPrice() * getTax() / 100;
     }
 
     public double getDiscountedPrice () {
-        double discountedPrice = getGrossPrice() - calculateDiscount();
-        return discountedPrice;
+        return getGrossPrice() - calculateDiscount();
     }
 
-    public double calculateDiscount() {
-        double discount = getGrossPrice() * getDiscount() / 100;
-        return discount;
+    private double calculateDiscount() {
+        return getGrossPrice() * getDiscount() / 100;
     }
 
     public double getNetPrice() {

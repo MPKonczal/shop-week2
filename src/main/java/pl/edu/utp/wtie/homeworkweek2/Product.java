@@ -1,5 +1,7 @@
 package pl.edu.utp.wtie.homeworkweek2;
 
+import java.util.Random;
+
 public class Product {
 
     private String name;
@@ -27,6 +29,15 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double getRandomPrice() {
+        Random random = new Random();
+        double randomPrice = random.nextDouble() * (300 - 50) + 50;
+        randomPrice *= 100;
+        randomPrice = Math.round(randomPrice);
+        randomPrice /= 100;
+        return randomPrice;
     }
 
     @Override

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service
 @ConfigurationProperties(prefix="page-info")
@@ -16,11 +15,12 @@ public class Basket {
     private List<Product> productList;
 
     public Basket() {
-        Product product1 = new Product("bread", getPrice());
-        Product product2 = new Product("orange juice", getPrice());
-        Product product3 = new Product("ham", getPrice());
-        Product product4 = new Product("cheese", getPrice());
-        Product product5 = new Product("wine", getPrice());
+        Product product = new Product();
+        Product product1 = new Product("bread", product.getRandomPrice());
+        Product product2 = new Product("orange juice", product.getRandomPrice());
+        Product product3 = new Product("ham", product.getRandomPrice());
+        Product product4 = new Product("cheese", product.getRandomPrice());
+        Product product5 = new Product("wine", product.getRandomPrice());
         productList = new ArrayList<>();
         productList.add(product1);
         productList.add(product2);
@@ -63,15 +63,6 @@ public class Basket {
 
     public void setDiscount(int discount) {
         this.discount = discount;
-    }
-
-    public double getPrice() {
-        Random random = new Random();
-        double price = random.nextDouble() * (300 - 50) + 50;
-        price *= 100;
-        price = Math.round(price);
-        price /= 100;
-        return price;
     }
 
     public double getGrossPrice () {

@@ -29,6 +29,22 @@ public class Basket {
         productList.add(product5);
     }
 
+    //@EventListener(ApplicationReadyEvent.class)
+    public void showInfo(String mode) {
+        System.out.println("Witaj w sklepie internetowym w wariancie " + mode);
+        System.out.println("*** Lista produktów w koszyku: ***");
+        productList.forEach(System.out::println);
+        System.out.format("Sumaryczna cena netto: %.2f zł%n", getNetPrice());
+
+        if ("Plus".equals(mode) || "Pro".equals(mode)) {
+            System.out.format("Podatek VAT (%d%%): %.2f zł%n", getTax(), calculateTax());
+            System.out.format("Cena brutto: %.2f zł%n", getGrossPrice());
+        } else if ("Pro".equals(mode)) {
+            System.out.format("Rabat (%d%%): %.2f zł%n", getDiscount(), calculateDiscount());
+            System.out.format("Cena brutto z uwzględeniem rabatu: %.2f zł%n", getDiscountedPrice());
+        }
+    }
+
     public List<Product> getProductList() {
         return productList;
     }
